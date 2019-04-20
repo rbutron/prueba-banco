@@ -1,0 +1,37 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Fecha de consumo</th>
+      <th>Monto</th>
+      <th>Descripción</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let movimiento of movimientos">
+      <td>{{ movimiento.fechaConsumo | date }}</td>
+      <td>{{ movimiento.monto | currency }}</td>
+      <td>{{ movimiento.descripcion }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-info"
+          (click)="editMovimiento(movimiento)"
+        >
+          Editar
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteMovimiento(movimiento)"
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

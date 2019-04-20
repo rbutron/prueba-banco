@@ -1,0 +1,110 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="form" (submit)="submitForm()">
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            type="text"
+            formControlName="name"
+            [ngClass]="
+              form.get('name').dirty && form.get('name').errors
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
+            placeholder="Nombre"
+            (blur)="touchField(form.get('name'))"
+          />
+
+          <div
+            class="invalid-feedback"
+            *ngIf="form.get('name').dirty && form.get('name').errors"
+          >
+            Por favor escriba un nombre.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            type="text"
+            formControlName="address"
+            [ngClass]="
+              form.get('address').dirty && form.get('address').errors
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
+            placeholder="Direccion"
+            (blur)="touchField(form.get('address'))"
+          />
+
+          <div
+            class="invalid-feedback"
+            *ngIf="form.get('address').dirty && form.get('address').errors"
+          >
+            Por favor escriba un email.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            type="text"
+            formControlName="city"
+            [ngClass]="
+              form.get('city').dirty && form.get('city').errors
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
+            placeholder="Ciudad"
+            (blur)="touchField(form.get('city'))"
+          />
+
+          <div
+            class="invalid-feedback"
+            *ngIf="form.get('city').dirty && form.get('city').errors"
+          >
+            Por favor escriba un email.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            type="number"
+            formControlName="phone"
+            [ngClass]="
+              form.get('phone').dirty && form.get('phone').errors
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
+            placeholder="Telefono"
+            (blur)="touchField(form.get('phone'))"
+          />
+
+          <div
+            class="invalid-feedback"
+            *ngIf="form.get('phone').dirty && form.get('phone').errors"
+          >
+            Por favor escriba un email.
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="!form.valid || isSaving"
+        class="btn btn-primary"
+      >
+        <ng-container *ngIf="!isSaving">Guardar</ng-container>
+        <div *ngIf="isSaving" class="spinner-border"></div>
+      </button>
+
+      <div *ngIf="error" class="alert alert-danger">
+        {{ error }}
+      </div>
+    </form>
+  </div>
+</div>

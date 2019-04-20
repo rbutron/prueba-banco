@@ -1,0 +1,20 @@
+<button type="button" class="btn btn-primary" (click)="toggleForm()">
+  {{ showForm ? 'Cerrar' : 'Agregar' }}
+</button>
+
+<app-tarjetas-form
+  *ngIf="showForm"
+  [tarjeta]="editingTarjeta"
+  (save)="saveTarjeta($event)"
+  (update)="updateTarjeta($event)"
+></app-tarjetas-form>
+
+<div>
+  <div *ngIf="(isLoading$ | async)" class="spinner-border"></div>
+  <app-tarjetas-table
+    *ngIf="!(isLoading$ | async)"
+    [tarjetas]="tarjetas$ | async"
+    (edit)="editTarjeta($event)"
+    (delete)="deleteTarjeta($event)"
+  ></app-tarjetas-table>
+</div>

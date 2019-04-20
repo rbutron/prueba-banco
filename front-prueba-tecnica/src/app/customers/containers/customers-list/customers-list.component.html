@@ -1,0 +1,26 @@
+<br />
+<button type="button" class="btn btn-primary" (click)="toggleForm()">
+  {{ showForm ? 'Cerrar' : 'Agregar' }}
+</button>
+<br />
+<div *ngIf="showForm">
+  <br />
+  <app-customers-form
+    [isSaving]="isSaving$ | async"
+    [error]="saveError"
+    [customer]="editingCustomer"
+    (save)="save($event)"
+    (update)="update($event)"
+  ></app-customers-form>
+  <br />
+</div>
+
+<br />
+
+<div *ngIf="(isLoading$ | async)" class="spinner-border"></div>
+<app-customers-table
+  *ngIf="!(isLoading$ | async)"
+  [customers]="customers$ | async"
+  (delete)="deleteCustomer($event)"
+  (edit)="editCustomer($event)"
+></app-customers-table>

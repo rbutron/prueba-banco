@@ -1,0 +1,62 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="form" (submit)="submitForm()">
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            type="text"
+            formControlName="nombre"
+            [ngClass]="
+              form.get('nombre').dirty && form.get('nombre').errors
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
+            placeholder="Nombre"
+            (blur)="touchField(form.get('nombre'))"
+          />
+
+          <div
+            class="invalid-feedback"
+            *ngIf="form.get('nombre').dirty && form.get('nombre').errors"
+          >
+            Por favor escriba un nombre.
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            type="text"
+            formControlName="especialidad"
+            [ngClass]="
+              form.get('especialidad').dirty && form.get('especialidad').errors
+                ? 'form-control is-invalid'
+                : 'form-control'
+            "
+            placeholder="Direccion"
+            (blur)="touchField(form.get('especialidad'))"
+          />
+
+          <div
+            class="invalid-feedback"
+            *ngIf="
+              form.get('especialidad').dirty && form.get('especialidad').errors
+            "
+          >
+            Por favor escriba un email.
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="!form.valid || isSaving"
+        class="btn btn-primary"
+      >
+        <ng-container *ngIf="!isSaving">Guardar</ng-container>
+        <div *ngIf="isSaving" class="spinner-border"></div>
+      </button>
+    </form>
+  </div>
+</div>

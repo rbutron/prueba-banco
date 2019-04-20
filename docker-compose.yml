@@ -1,0 +1,12 @@
+version: '2'
+services:
+  front-prueba-tecnica:
+    build: front-prueba-tecnica/.
+    ports:
+      - "8081:8081"
+    depends_on:
+      - test-banco
+  test-banco:
+    build: test-banco/.
+    ports:
+      - "7777:7777"

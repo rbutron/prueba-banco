@@ -1,0 +1,34 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Especialidad</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let asesor of asesores">
+      <td>{{ asesor.nombre }}</td>
+      <td>{{ asesor.especialidad }}</td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-info"
+          [routerLink]="['/asesores', asesor.id, 'update']"
+        >
+          Editar
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="elimiar(asesor.id)"
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

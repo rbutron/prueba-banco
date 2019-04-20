@@ -1,0 +1,20 @@
+<button type="button" class="btn btn-primary" (click)="toggleForm()">
+  {{ showForm ? 'Cerrar' : 'Agregar' }}
+</button>
+
+<app-movimientos-form
+  *ngIf="showForm"
+  [movimiento]="editingMovimiento"
+  (save)="saveMovimiento($event)"
+  (update)="updateMovimiento($event)"
+></app-movimientos-form>
+
+<div>
+  <div *ngIf="(isLoading$ | async)" class="spinner-border"></div>
+  <app-movimientos-table
+    *ngIf="!(isLoading$ | async)"
+    [movimientos]="movimientos$ | async"
+    (edit)="editMovimiento($event)"
+    (delete)="deleteMovimiento($event)"
+  ></app-movimientos-table>
+</div>

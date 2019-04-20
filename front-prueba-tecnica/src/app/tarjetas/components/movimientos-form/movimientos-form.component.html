@@ -1,0 +1,92 @@
+<div class="card">
+  <div class="card-body">
+    <form [formGroup]="form" (submit)="submitForm()">
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            type="date"
+            class="form-control"
+            formControlName="fechaConsumo"
+            placeholder="Fecha de consumo"
+            [ngClass]="
+              form.get('fechaConsumo').dirty && form.get('fechaConsumo').errors
+                ? 'is-invalid'
+                : ''
+            "
+            (blur)="touchField(form.get('fechaConsumo'))"
+          />
+
+          <div
+            *ngIf="
+              form.get('fechaConsumo').dirty && form.get('fechaConsumo').errors
+            "
+            class="invalid-feedback"
+          >
+            Por favor ingrese una fecha de consumo
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            type="number"
+            class="form-control"
+            formControlName="monto"
+            placeholder="Monto"
+            [ngClass]="
+              form.get('monto').dirty && form.get('monto').errors
+                ? 'is-invalid'
+                : ''
+            "
+            (blur)="touchField(form.get('monto'))"
+          />
+
+          <div
+            *ngIf="form.get('monto').dirty && form.get('monto').errors"
+            class="invalid-feedback"
+          >
+            Por favor escriba monto
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="input-group">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Descripción"
+            formControlName="descripcion"
+            [ngClass]="
+              form.get('descripcion').dirty && form.get('descripcion').errors
+                ? 'is-invalid'
+                : ''
+            "
+            (blur)="touchField(form.get('descripcion'))"
+          />
+
+          <div
+            *ngIf="
+              form.get('descripcion').dirty && form.get('descripcion').errors
+            "
+            class="invalid-feedback"
+          >
+            Por favor escriba una descripción
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        [disabled]="!form.valid || isSaving"
+        class="btn btn-primary"
+      >
+        <ng-container *ngIf="!isSaving">Guardar</ng-container>
+        <div *ngIf="isSaving" class="spinner-border"></div>
+      </button>
+
+      <div *ngIf="error" class="alert alert-danger">{{ error }}</div>
+    </form>
+  </div>
+</div>

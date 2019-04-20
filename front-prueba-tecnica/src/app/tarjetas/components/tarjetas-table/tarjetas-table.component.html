@@ -1,0 +1,45 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Número</th>
+      <th>CCV</th>
+      <th>Tipo de tarjeta</th>
+      <th>Movimientos</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let tarjeta of tarjetas">
+      <td>{{ tarjeta.numTarjeta }}</td>
+      <td>{{ tarjeta.ccv }}</td>
+      <td>{{ tarjeta.tipoTarjeta }}</td>
+      <td>{{ tarjeta.movimientos | number }}</td>
+      <td>
+        <a [routerLink]="[tarjeta.id, 'movimientos']" class="btn btn-primary"
+          >Ver movimientos</a
+        >
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-info"
+          (click)="editTarjeta(tarjeta)"
+        >
+          Editar
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteTarjeta(tarjeta)"
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

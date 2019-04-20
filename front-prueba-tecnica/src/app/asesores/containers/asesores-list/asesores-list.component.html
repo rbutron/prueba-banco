@@ -1,0 +1,21 @@
+<br />
+<button type="button" class="btn btn-primary" (click)="formAddNewCustomer()">
+  Agregar
+</button>
+<br />
+<div *ngIf="showForm">
+  <br />
+  <app-asesores-form
+    [isSaving]="isSaving$ | async"
+    [updateAsesor]="asesor$ | async"
+    (save)="save($event)"
+  ></app-asesores-form>
+  <br />
+</div>
+
+<div *ngIf="(isLoading$ | async)" class="spinner-border"></div>
+<app-asesores-table
+  *ngIf="!(isLoading$ | async)"
+  [asesores]="asesores$ | async"
+  (delete)="delete($event)"
+></app-asesores-table>

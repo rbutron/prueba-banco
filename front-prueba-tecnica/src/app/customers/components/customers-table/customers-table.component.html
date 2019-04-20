@@ -1,0 +1,48 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Teléfono</th>
+      <th>Direccion</th>
+      <th>Ciudad</th>
+      <th>Tarjetas</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let customer of customers">
+      <td>{{ customer.nombre }}</td>
+      <td>{{ customer.telefono }}</td>
+      <td>{{ customer.direccion }}</td>
+      <td>{{ customer.ciudad }}</td>
+      <td>{{ customer.tarjetas | number }}</td>
+      <td>
+        <a
+          [routerLink]="['/customers', customer.id, 'tarjetas']"
+          class="btn btn-primary"
+          >Ver tarjetas</a
+        >
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-info"
+          (click)="editCustomer(customer)"
+        >
+          Editar
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="deleteCustomer(customer)"
+        >
+          Eliminar
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
